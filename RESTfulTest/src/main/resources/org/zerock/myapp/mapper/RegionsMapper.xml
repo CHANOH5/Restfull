@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="org.zerock.myapp.mapper.RegionsMapper">
+ 
+ 
+	<select id="getAllRegions" resultType="org.zerock.myapp.domain.RegionsDTO">
+	    SELECT *
+	    FROM regions
+	    <where>
+	        <if test="regions_id != null">
+	            AND regions_id = #{regions_id}
+	        </if>
+	    </where>
+	</select>
+	
+	<select id="getRegion" >
+		SELECT *
+		FROM regions
+		WHERE region_id = #{region_id}
+	</select>
+	
+	<select id="deleteRegions">
+	    DELETE FROM
+	    regions
+	    WHERE region_id = #{region_id}
+	</select>
+	
+	<select id="addRegions">
+	    INSERT INTO regions (region_id, region_name)
+	    VALUES (#{region_id}, #{region_name})
+	</select>
+	
+	<select id="updateRegions">
+	    UPDATE regions
+	    SET
+	    region_name = #{region.region_name}
+	    WHERE
+	    region_id = #{region_id}
+	</select>
+ 
+ </mapper>
